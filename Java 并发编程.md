@@ -1,0 +1,15 @@
+# Java 并发编程
+
+## 5、线程有哪些常用的调度方法
+
+### 说说 sleep 方法
+
+当线程 A 调用了 Thread 的 sleep 方法后，线程 A 从 Running  进入 Timed Waiting 状态（阻塞），线程 A 会暂时让出指定时间的执行权。指定的睡眠时间到了后该方法会正常返回，接着参与 CPU 调度，获取到 CPU 执行权后可以继续执行。
+
+### 说说yield方法？
+
+调用 yield 会让当前线程让出 CPU 执行权，从 Running 进入 Runnable  就绪状态，具体的实现依赖于操作系统的任务调度器。
+
+### 说说interrupt方法？
+
+`interrupt()` 方法用于通知线程停止，但不会直接终止线程，需要线程自行处理中断标志。打断 sleep、wait、join 的线程，会清空打断状态。打断正常运行的线程不会清空打断状态。常与 `isInterrupted()` 或 `Thread.interrupted()` 配合使用。
